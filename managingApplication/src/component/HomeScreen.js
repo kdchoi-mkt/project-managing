@@ -7,7 +7,7 @@ import {
 
 const HomeScreen = () => (
     <SafeAreaView>
-        <Ribbon>Header 1입니다.</Ribbon>
+        <Ribbon>홈 연습하기</Ribbon>
         <DescriptionView></DescriptionView>
     </SafeAreaView>
 )
