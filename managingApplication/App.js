@@ -15,7 +15,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage'
+
 import Ribbon from './src/component/Ribbon'
 import SemiRibbon from './src/component/SemiRibbon'
 import DescriptionView from './src/component/DescriptionView'

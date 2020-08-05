@@ -9,10 +9,29 @@ import {
 } from 'react-native'
 
 export default class SemiRibbon extends Component {
+    constructor(){
+        super();
+
+        this.state = {
+            is_completed: 0
+        };
+    }
+
+    changeColor(){
+        console.log(this.state.is_completed)
+        if (this.state.is_completed === 0){
+            this.setState({is_completed: 1})
+         }
+         else {
+             this.setState({is_completed: 0})
+        }
+    }
+
     render(){
     return(
         <View style = {style.groupStyle}>
-            <TouchableOpacity style = {style.square} />
+            <TouchableOpacity style = {this.state.is_completed === 0? style.square: style.completed_square} 
+                              onPress = {this.changeColor}/>
             <View style = {style.ribbonStyle}>
                 <Text style = {style.headerStyle}>
                     {this.props.children}
@@ -23,6 +42,12 @@ export default class SemiRibbon extends Component {
 };
 
 const style = StyleSheet.create({
+    completed_square: {
+        width: 47.8,
+        height: 47.8,
+        backgroundColor: 'blue',
+        marginRight: 10
+    },
     groupStyle: {
         margin: 10,
         marginBottom: 0,
