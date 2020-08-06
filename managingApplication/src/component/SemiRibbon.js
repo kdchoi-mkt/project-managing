@@ -9,15 +9,14 @@ import {
 } from 'react-native'
 
 export default class SemiRibbon extends Component {
-    constructor(){
-        super();
-
+    constructor(props){
+        super(props);
         this.state = {
             is_completed: 0
         };
     }
 
-    changeColor(){
+    changeColor = () => {
         console.log(this.state.is_completed)
         if (this.state.is_completed === 0){
             this.setState({is_completed: 1})

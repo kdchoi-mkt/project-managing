@@ -12,17 +12,19 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { FlatList } from 'react-native-gesture-handler';
 import SemiRibbon from './SemiRibbon';
 
-export default class DescriptionView extends Component{
-    constructor(){
-        super();
-        const initial_data = []
-        async () => {initial_data = await this.getAllValue()};
-        console.log(initial_data)
+class DescriptionView extends Component{
+    constructor(props){
+        super(props);
         this.state = {
             text: '',
             displayText: '스케줄을 작성해보세요',
-            data: initial_data
+            data: []
         }
+    }
+
+    async componentDidMount() {
+        const data = await this.getAllValue();
+        this.setState({data});
     }
 
     constructDataJSON = (text, index) => {
@@ -113,9 +115,8 @@ export default class DescriptionView extends Component{
         console.log(this.state.text)
         let text = this.state.text
 
-
         console.log("데이터", this.state.data)
-        this.setState({displayText: this.state.text})
+        this.setState({displayText: text})
         this.setState({text: 'asasa'})
     }
     
@@ -146,6 +147,8 @@ export default class DescriptionView extends Component{
         )
     }
 }
+
+export default DescriptionView;
 
 const style = StyleSheet.create({
     viewStyle: {
