@@ -57,3 +57,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# Connection file
+/src/global/styles.js
