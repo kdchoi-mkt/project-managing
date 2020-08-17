@@ -16,17 +16,12 @@ import {
   StatusBar,
 } from 'react-native';
 
-import Ribbon from './src/component/Ribbon'
-import SemiRibbon from './src/component/SemiRibbon'
-import DescriptionView from './src/component/DescriptionView'
-import IntroScreen from './src/component/IntroScreen'
-import HomeScreen from './src/component/HomeScreen'
 
 const App = () => {
   return (
-    <View>
-      <HomeScreen /> 
-    </View>
+    <SafeAreaView>
+      <Text>Hello world!</Text> 
+    </SafeAreaView>
   );
 };
 
