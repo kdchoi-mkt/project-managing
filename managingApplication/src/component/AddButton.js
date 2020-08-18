@@ -1,25 +1,21 @@
 import React from 'react'
 import {
     TouchableOpacity,
-    Text,
     StyleSheet
 } from 'react-native'
+import AppText from './AppText'
+import * as globalStyles from '../global/styles'
 
 const AddButton = (prop) => {
     return (
-        <TouchableOpacity style={[prop.style, styles.addButtonStyle]}
+        <TouchableOpacity style={[prop.style, globalStyles.rectangularButton, {borderWidth: 0}]}
                           onPress={prop.onPress}>
-            <Text style={styles.addButtonTextStyle}>+</Text>
+            <AppText style={styles.addButtonTextStyle}>+</AppText>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
-    addButtonStyle: {
-        height: 30,
-        width: 30,
-        borderColor: 'black',
-    },
     addButtonTextStyle: {
         fontSize: 30,
         marginTop: -5,

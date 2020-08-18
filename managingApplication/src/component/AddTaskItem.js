@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {
     View,
     Text,
+    TextInput,
     TouchableOpacity,
     Pressable,
     StyleSheet,
@@ -9,8 +10,9 @@ import {
     Alert
 } from 'react-native'
 import AddButton from './AddButton'
-import { TextInput } from 'react-native-gesture-handler'
-import { task } from '../global/mockData'
+import AppText from './AppText'
+import HeaderText from './HeaderText'
+import * as globalStyles from '../global/styles'
 
 const AddTaskItem = (props) => {
     const [modalVisible, setModalVisible] = useState(false)
@@ -49,21 +51,21 @@ const AddTaskItem = (props) => {
                 visible={modalVisible}>
                 <View style={styles.viewStyle}>
                     <View style={styles.taskTitleViewStyle}>
-                        <Text style={styles.ModalTextStyle}>새 작업 추가하기</Text>
+                        <HeaderText theme='light'>새 작업 추가하기</HeaderText>
                     </View>
                     <View style={styles.descriptionViewStyle}>
-                        <Text style={styles.ModalDescriptionTextStyle}>새 작업 이름</Text>
+                        <AppText theme='light'>새 작업 이름</AppText>
                         <TextInput style={[styles.ModalDescriptionTextStyle, styles.inputTextStyle]}
                                    placeholder="새 작업 이름을 적으세요"
-                                   placeholderTextColor='#AAAAAA'
+                                   placeholderTextColor={globalStyles.PLACEHOLDER_TEXT_COLOR}
                                    onSubmitEditing={() => onPressModalButton()}
                                    onChangeText={(text) => setTaskTitle(text)}
                                    value={taskTitle}
                                    />
-                        <Text style={styles.ModalDescriptionTextStyle}>작업 설명</Text>
+                        <AppText theme='light'>작업 설명</AppText>
                         <TextInput style={[styles.ModalDescriptionTextStyle, styles.inputTextStyle, styles.inputLongTextStyle]}
                                    placeholder="새 작업 설명을 적으세요"
-                                   placeholderTextColor='#AAAAAA'
+                                   placeholderTextColor={globalStyles.PLACEHOLDER_TEXT_COLOR}
                                    multiline={true}
                                    onSubmitEditing={() => onPressModalButton()}
                                    onChangeText={(text) => setTaskDescription(text)}
@@ -73,18 +75,16 @@ const AddTaskItem = (props) => {
                     <View style={styles.buttonLayStyle}>
                         <TouchableOpacity style={[styles.ModalCloseButtonStyle, {borderBottomLeftRadius: 10}]} 
                                             onPress={() => onPressModalButton()}>
-                            <Text style={styles.ModalCloseButtonTextStyle}>완료</Text>
+                            <HeaderText theme="dark">완료</HeaderText>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.ModalCloseButtonStyle, {borderBottomRightRadius: 10}]} 
                                             onPress={() => closeModal()}>
-                            <Text style={styles.ModalCloseButtonTextStyle}>취소</Text>
+                            <HeaderText theme="dark">취소</HeaderText>
                         </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
-            <Pressable style={styles.textWrapperStyle}>
-                <Text style={[styles.textStyle]}>{props.title}</Text>
-            </Pressable>
+            <AppText style={{color: globalStyles.PLACEHOLDER_TEXT_COLOR}}>{props.title}</AppText>
         </View>
     )
 
@@ -100,11 +100,6 @@ const styles = StyleSheet.create({
     textWrapperStyle: {
         alignItems: 'center',
         flexDirection: 'column'
-    },
-    textStyle: {
-        fontSize: 18,
-        fontWeight: '500',
-        color: 'grey'
     },
     viewStyle: {
         flex: 1,
@@ -139,17 +134,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    ModalTextStyle: {
-        color: '#FBF9F9',
-        fontWeight: 'bold'
-    },
-    ModalDescriptionTextStyle: {
-        color: '#FBF9F9',
-    },
-    ModalCloseButtonTextStyle: {
-        color: '#3B3648',
-        fontWeight: 'bold'
-    },
     inputTextStyle: {
         height: '15%',
         width: '80%',
@@ -160,6 +144,9 @@ const styles = StyleSheet.create({
     },
     inputLongTextStyle: {
         height: '45%',
+    },
+    ModalDescriptionTextStyle: {
+        color: globalStyles.LIGHT_TEXT_COLOR
     }
 })
 

@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
 import {
     View,
-    Text,
     TouchableOpacity,
     Pressable,
     StyleSheet,
     Modal
 } from 'react-native'
 import ConfirmButton from './ConfirmButton'
+import HeaderText from './HeaderText'
+import AppText from './AppText'
+import * as globalStyles from '../global/styles'
 
 const TaskItem = (props) => {
     const [overwriteTextStyle, setTextStyle] = useState({textDecorationLine: props.activate ? 'line-through' : 'none'})
@@ -30,20 +32,20 @@ const TaskItem = (props) => {
                 visible={modalVisible}>
                 <View style={styles.viewStyle}>
                     <View style={styles.taskTitleViewStyle}>
-                        <Text style={styles.ModalTextStyle}>{props.taskTitle}</Text>
+                        <HeaderText theme='light'>{props.taskTitle}</HeaderText>
                     </View>
                     <View style={styles.descriptionViewStyle}>
-                        <Text style={styles.ModalDescriptionTextStyle}>{props.description}</Text>
+                        <AppText theme='light'>{props.description}</AppText>
                     </View>
                     <TouchableOpacity style={styles.ModalCloseButtonStyle} 
                                         onPress={() => onPressModalButton()}>
-                        <Text style={styles.ModalCloseButtonTextStyle}>닫기</Text>
+                        <HeaderText theme='dark'>닫기</HeaderText>
                     </TouchableOpacity>
                 </View>
             </Modal>
             <Pressable style={styles.textWrapperStyle}
                        onPress={() => onPressText()}>
-                <Text style={[styles.textStyle, overwriteTextStyle]}>{props.taskTitle}</Text>
+                <HeaderText style={overwriteTextStyle}>{props.taskTitle}</HeaderText>
             </Pressable>
         </View>
     )
@@ -61,10 +63,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column'
     },
-    textStyle: {
-        fontSize: 18,
-        fontWeight: '500',
-    },
     viewStyle: {
         flex: 1,
         alignItems: 'stretch',
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     taskTitleViewStyle: {
-        backgroundColor: '#3B3648',
+        backgroundColor: globalStyles.DARK_COLOR,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -81,29 +79,18 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10
     },
     descriptionViewStyle: {
-        backgroundColor: '#3B3648',
+        backgroundColor: globalStyles.DARK_COLOR,
         height: 150,
         alignItems: 'center',
         justifyContent: 'center',
     }, 
     ModalCloseButtonStyle: {
-        backgroundColor: '#E7BDB3',
+        backgroundColor: globalStyles.LIGHT_COLOR,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10
-    },
-    ModalTextStyle: {
-        color: '#FBF9F9',
-        fontWeight: 'bold'
-    },
-    ModalDescriptionTextStyle: {
-        color: '#FBF9F9',
-    },
-    ModalCloseButtonTextStyle: {
-        color: '#3B3648',
-        fontWeight: 'bold'
     }
 })
 
