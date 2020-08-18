@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {
     View,
     Text,
@@ -37,12 +37,12 @@ const TaskItem = (props) => {
                     </View>
                     <TouchableOpacity style={styles.ModalCloseButtonStyle} 
                                         onPress={() => onPressModalButton()}>
-                        <Text style={styles.ModalCloseButtonTextStyle}>모달 닫기</Text>
+                        <Text style={styles.ModalCloseButtonTextStyle}>닫기</Text>
                     </TouchableOpacity>
                 </View>
             </Modal>
             <Pressable style={styles.textWrapperStyle}
-                       onPress={onPressText}>
+                       onPress={() => onPressText()}>
                 <Text style={[styles.textStyle, overwriteTextStyle]}>{props.taskTitle}</Text>
             </Pressable>
         </View>
@@ -55,8 +55,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        margin: 10,
-        marginTop: 5
+        marginTop: 10
     },
     textWrapperStyle: {
         alignItems: 'center',
