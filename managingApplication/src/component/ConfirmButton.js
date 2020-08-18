@@ -3,7 +3,7 @@ import {
     TouchableOpacity, StyleSheet
 } from 'react-native'
 
-const AddButton = (props) => {
+const confirmButton = (props) => {
     const [overwriteButtonStyle, setButtonStyle] = useState({backgroundColor: 'white'})
 
     const onPressButton = () => {
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddButton
+export default confirmButton
