@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 
 const confirmButton = (props) => {
-    const [overwriteButtonStyle, setButtonStyle] = useState({backgroundColor: 'white'})
+    const [overwriteButtonStyle, setButtonStyle] = useState({backgroundColor: props.activate ? 'green' : 'white'})
 
     const onPressButton = () => {
         // props.press()
@@ -16,7 +16,7 @@ const confirmButton = (props) => {
 
     return (
         <TouchableOpacity style = {[props.styles, styles.buttonStyle, overwriteButtonStyle]}
-                          onPress = {onPressButton} />
+                          onPress = {() => onPressButton()} />
     )
 }
 
