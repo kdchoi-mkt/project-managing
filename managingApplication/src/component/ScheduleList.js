@@ -21,7 +21,10 @@ const ScheduleList = (props) => {
 
     return (
         <View style = {styles.viewStyle}>
-            <HeaderText>{props.title}</HeaderText>
+            <View style = {styles.scheduleHeaderViewStyle}>
+                <HeaderText style={styles.scheduleHeaderStyle}>{props.title}</HeaderText>
+            </View>
+            <View style={styles.paddingStyle}>
             <FlatList style = {styles.scheduleListStyle}
                       data = {props.data}
                       renderItem = {(item) => renderItem(item)}
@@ -30,17 +33,29 @@ const ScheduleList = (props) => {
             <AddItem style={styles.addScheduleItemStyle}
                      title={"+를 눌러서 새로운 스케줄을 추가하세요"}
                      type={"스케줄"}/>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    scheduleHeaderStyle: {
+        fontSize: 30,
+    },
+    scheduleHeaderViewStyle: {
+        justifyContent: 'center',
+        backgroundColor: globalStyles.LIGHT_BG_COLOR,
+        padding: 20
+    },
     viewStyle: {
         margin: 30,
         flexDirection: 'column',
         justifyContent: 'center',
         backgroundColor: globalStyles.LIGHT_TEXT_COLOR,
-        padding: 20
+    },
+    paddingStyle: {
+        padding: 20,
+        paddingTop: 0
     },
     scheduleListStyle: {
         marginTop: 10

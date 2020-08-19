@@ -9,7 +9,7 @@ const confirmButton = (props) => {
 
     const onPressButton = () => {
         // props.press()
-
+        props.onPress()
         // 밑의 내용은 모두 DB에서 가져오는 것으로 처리해야함
         let modifier = overwriteButtonStyle.backgroundColor === globalStyles.DARK_COLOR ? 'white' : globalStyles.DARK_COLOR
         setButtonStyle({backgroundColor: modifier})

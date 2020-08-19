@@ -16,8 +16,10 @@ const TaskItem = (props) => {
     const [modalVisible, setModalVisible] = useState(false)
 
     const onPressText = () => {
-        console.log(props.description)
-        setModalVisible(true)
+        const lineDecoration = overwriteTextStyle.textDecorationLine
+        setTextStyle({
+            textDecorationLine: lineDecoration === 'none'? 'line-through': "none" 
+        })
     }
 
     const onPressModalButton = () => {
@@ -26,7 +28,8 @@ const TaskItem = (props) => {
 
     return (
         <View style={styles.taskStyle}>
-            <ConfirmButton activate={props.activate}/>
+            <ConfirmButton activate={props.activate}
+                           onPress={() => onPressText()}/>
             <Modal animationType='slide'
                 transparent={true}
                 visible={modalVisible}>
@@ -43,8 +46,7 @@ const TaskItem = (props) => {
                     </TouchableOpacity>
                 </View>
             </Modal>
-            <Pressable style={styles.textWrapperStyle}
-                       onPress={() => onPressText()}>
+            <Pressable style={styles.textWrapperStyle}>
                 <HeaderText style={overwriteTextStyle}>{props.taskTitle}</HeaderText>
             </Pressable>
         </View>
