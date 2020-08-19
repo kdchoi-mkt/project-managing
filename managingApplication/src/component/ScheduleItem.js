@@ -8,7 +8,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 const ScheduleItem = (prop) => {
     const navigationInformation = {
         title: prop.title,
-        description: prop.description
+        description: prop.description,
+        schedule_id: prop.schedule_id
     }
 
     return (
