@@ -11,6 +11,13 @@ import AppText from './AppText'
 import * as globalStyles from '../global/styles'
 
 const TaskList = (props) => {
+    const addInfo = {
+        route: 'addTask',
+        format: {
+            schedule_id: props.schedule_id
+        }
+    }
+
     const renderItem = ({item}) => {
         return (
             <TaskItem activate={item.is_completed}
@@ -32,7 +39,9 @@ const TaskList = (props) => {
 
             <AddItem style={styles.addTaskItemStyle}
                      title={"+를 눌러서 새로운 작업을 추가하세요"}
-                     type={"작업"}/>
+                     type={"작업"}
+                     loading={props.loading}
+                     addInfo={addInfo}/>
         </View>
     )
 }
