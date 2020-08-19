@@ -10,6 +10,8 @@ import ConfirmButton from './ConfirmButton'
 import HeaderText from './HeaderText'
 import AppText from './AppText'
 import * as globalStyles from '../global/styles'
+import DescriptionModal from './DescriptionModal'
+// 나중에 바꿔야함
 
 const TaskItem = (props) => {
     const [overwriteTextStyle, setTextStyle] = useState({textDecorationLine: props.activate ? 'line-through' : 'none'})
@@ -26,10 +28,20 @@ const TaskItem = (props) => {
         setModalVisible(!modalVisible)
     }
 
+    const CloseButton = () => {
+        return (
+            <TouchableOpacity style={styles.ModalCloseButtonStyle} 
+                        onPress={() => onPressModalButton()}>
+            <HeaderText theme='dark'>닫기</HeaderText>
+            </TouchableOpacity>
+        )
+    }
+
     return (
         <View style={styles.taskStyle}>
             <ConfirmButton activate={props.activate}
                            onPress={() => onPressText()}/>
+            
             <Modal animationType='slide'
                 transparent={true}
                 visible={modalVisible}>
@@ -40,13 +52,11 @@ const TaskItem = (props) => {
                     <View style={styles.descriptionViewStyle}>
                         <AppText theme='light'>{props.description}</AppText>
                     </View>
-                    <TouchableOpacity style={styles.ModalCloseButtonStyle} 
-                                        onPress={() => onPressModalButton()}>
-                        <HeaderText theme='dark'>닫기</HeaderText>
-                    </TouchableOpacity>
+                    <CloseButton />
                 </View>
             </Modal>
-            <Pressable style={styles.textWrapperStyle}>
+            <Pressable style={styles.textWrapperStyle}
+                       onPress={() => onPressModalButton()}>
                 <HeaderText style={overwriteTextStyle}>{props.taskTitle}</HeaderText>
             </Pressable>
         </View>
