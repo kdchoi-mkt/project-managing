@@ -12,10 +12,14 @@ import AppText from './AppText'
 import HeaderText from './HeaderText'
 import * as globalStyles from '../global/styles'
 
+import connectFromServer from '../server/connectFromServer'
+
 const AddItem = (props) => {
     const [modalVisible, setModalVisible] = useState(false)
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
+
+    const {route, format} = props.addInfo
 
     const onPressAddButton = () => {
         setModalVisible(true)
@@ -30,8 +34,11 @@ const AddItem = (props) => {
             Alert.alert(`${props.type} 설명이 작성되지 않았습니다!`)
             return ;
         }
-        console.log(title)
-        console.log(description)
+        console.log(route, format, title, description)
+
+        connectFromServer(route, {...format, title, description})
+        .then(() => props.loading())
+        
         closeModal()
     }
 
