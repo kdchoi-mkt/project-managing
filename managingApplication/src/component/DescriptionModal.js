@@ -6,20 +6,23 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native'
+import HeaderText from './HeaderText'
 
 const DescriptionModal = (props) => {
     return(
-        <View>
-            <Modal animationType='slide'
-                   transparent={true}
-                   visible={props.modalVisible}>
-                <View style={styles.viewStyle}>
-                    <TouchableOpacity style={styles.touchStyle}>
-                        <Text style={styles.textStyle}>{props.description}</Text>
-                    </TouchableOpacity>
+        <Modal animationType='slide'
+            transparent={true}
+            visible={props.modalVisible}>
+            <View style={styles.viewStyle}>
+                <View style={[styles.taskTitleViewStyle]}>
+                        <HeaderText theme='light'>{`새 ${props.type} 작성하기`}</HeaderText>
                 </View>
-            </Modal>
-        </View>
+                <View style={[styles.descriptionViewStyle, props.descriptionStyle]}>
+                    {props.children}
+                </View>
+                {props.button}       
+            </View>
+        </Modal>
     )
 }
 
@@ -28,17 +31,23 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'stretch',
         justifyContent: 'center',
-        margin: 30
+        margin: 30,
+        padding: 10,
     },
-    touchStyle: {
-        backgroundColor: 'blue',
-        height: 400,
+    taskTitleViewStyle: {
+        backgroundColor: '#3B3648',
+        height: 50,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10
     },
-    textStyle: {
-        color: 'white'
-    }
+    descriptionViewStyle: {
+        backgroundColor: '#3B3648',
+        height: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }, 
 })
 
 export default DescriptionModal
