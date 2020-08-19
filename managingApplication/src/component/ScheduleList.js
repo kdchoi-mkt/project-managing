@@ -11,10 +11,18 @@ import AddItem from './AddItem'
 import * as globalStyles from '../global/styles'
 
 const ScheduleList = (props) => {
+    const addInfo = {
+        route: 'addSchedule',
+        format: {
+            user_id: props.user_id
+        }
+    }
+
     const renderItem = ({item}) => {
         return (
             <ScheduleItem navigation={props.navigation}
                       description={item.description}
+                      schedule_id={item.id}
                       title={item.title} />
         )
     }
@@ -32,7 +40,9 @@ const ScheduleList = (props) => {
 
             <AddItem style={styles.addScheduleItemStyle}
                      title={"+를 눌러서 새로운 스케줄을 추가하세요"}
-                     type={"스케줄"}/>
+                     type={"스케줄"}
+                     addInfo={addInfo}
+                     loading={props.loading}/>
             </View>
         </View>
     )
