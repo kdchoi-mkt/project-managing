@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
 import {
     View,
-    Text,
     TextInput,
     TouchableOpacity,
-    Pressable,
     StyleSheet,
     Modal,
     Alert
@@ -14,62 +12,62 @@ import AppText from './AppText'
 import HeaderText from './HeaderText'
 import * as globalStyles from '../global/styles'
 
-const AddTaskItem = (props) => {
+const AddItem = (props) => {
     const [modalVisible, setModalVisible] = useState(false)
-    const [taskTitle, setTaskTitle] = useState("")
-    const [taskDescription, setTaskDescription] = useState("")
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
 
     const onPressAddButton = () => {
         setModalVisible(true)
     }
 
     const onPressModalButton = () => {
-        if (taskTitle.length === 0) {
-            Alert.alert("작업 이름 미지정!")
+        if (title.length === 0) {
+            Alert.alert(`${props.type} 이름이 작성되지 않았습니다!`)
             return ;
         }
-        if (taskDescription.length === 0) {
-            Alert.alert("작업 설명 미지정!")
+        if (description.length === 0) {
+            Alert.alert(`${props.type} 설명이 작성되지 않았습니다!`)
             return ;
         }
-        console.log(taskTitle)
-        console.log(taskDescription)
+        console.log(title)
+        console.log(description)
         closeModal()
     }
 
     const closeModal = () => {
         setModalVisible(!modalVisible)
-        setTaskTitle("")
-        setTaskDescription("")
+        setTitle("")
+        setDescription("")
     }
 
     return (
-        <View style={[props.styles, styles.taskStyle]}>
+        <View style={[styles.taskStyle, props.styles]}>
             <AddButton onPress={() => onPressAddButton()}/>
             <Modal animationType='slide'
                 transparent={true}
                 visible={modalVisible}>
                 <View style={styles.viewStyle}>
                     <View style={styles.taskTitleViewStyle}>
-                        <HeaderText theme='light'>새 작업 추가하기</HeaderText>
+                        <HeaderText theme='light'>{`새 ${props.type} 작성하기`}</HeaderText>
                     </View>
                     <View style={styles.descriptionViewStyle}>
-                        <AppText theme='light'>새 작업 이름</AppText>
+                        <AppText theme='light'>{`새 ${props.type} 이름 작성하기`}</AppText>
                         <TextInput style={[styles.ModalDescriptionTextStyle, styles.inputTextStyle]}
-                                   placeholder="새 작업 이름을 적으세요"
+                                   placeholder={`새 ${props.type} 이름을 적으세요`}
                                    placeholderTextColor={globalStyles.PLACEHOLDER_TEXT_COLOR}
                                    onSubmitEditing={() => onPressModalButton()}
-                                   onChangeText={(text) => setTaskTitle(text)}
-                                   value={taskTitle}
+                                   onChangeText={(text) => setTitle(text)}
+                                   value={title}
                                    />
-                        <AppText theme='light'>작업 설명</AppText>
+                        <AppText theme='light'>{`새 ${props.type} 설명 작성하기`}</AppText>
                         <TextInput style={[styles.ModalDescriptionTextStyle, styles.inputTextStyle, styles.inputLongTextStyle]}
-                                   placeholder="새 작업 설명을 적으세요"
+                                   placeholder={`새 ${props.type} 설명을 적으세요`}
                                    placeholderTextColor={globalStyles.PLACEHOLDER_TEXT_COLOR}
                                    multiline={true}
                                    onSubmitEditing={() => onPressModalButton()}
-                                   onChangeText={(text) => setTaskDescription(text)}
-                                   value={taskDescription}
+                                   onChangeText={(text) => setDescription(text)}
+                                   value={description}
                                    />
                     </View>
                     <View style={styles.buttonLayStyle}>
@@ -150,4 +148,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddTaskItem
+export default AddItem
