@@ -60,3 +60,4 @@ buck-out/
 
 # Connection file
 /src/global/styles.js
+/src/server/connection.js
